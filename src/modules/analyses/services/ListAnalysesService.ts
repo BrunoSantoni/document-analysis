@@ -9,7 +9,7 @@ import IAnalysesRepository from '../repositories/IAnalysesRepository';
 class ListAnalysesService {
   constructor(
     @inject('AnalysesRepository')
-    private analysisRepository: IAnalysesRepository,
+    private analysesRepository: IAnalysesRepository,
 
     @inject('CacheProvider')
     private cacheProvider: ICacheProvider,
@@ -21,9 +21,9 @@ class ListAnalysesService {
     );
 
     if (!allAnalyses) {
-      allAnalyses = await this.analysisRepository.findAll();
+      allAnalyses = await this.analysesRepository.findAll();
 
-      if (!allAnalyses) {
+      if (allAnalyses.length < 1) {
         throw new ServerError('Nenhuma análise encontrada');
       }
 

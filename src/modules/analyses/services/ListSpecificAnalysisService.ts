@@ -10,7 +10,7 @@ import IAnalysesRepository from '../repositories/IAnalysesRepository';
 class ListSpecificAnalysisService {
   constructor(
     @inject('AnalysesRepository')
-    private analysisRepository: IAnalysesRepository,
+    private analysesRepository: IAnalysesRepository,
 
     @inject('CacheProvider')
     private cacheProvider: ICacheProvider,
@@ -28,7 +28,7 @@ class ListSpecificAnalysisService {
     );
 
     if (!analysis) {
-      analysis = await this.analysisRepository.findSpecificAnalysis(analysisId);
+      analysis = await this.analysesRepository.findSpecificAnalysis(analysisId);
 
       if (!analysis) {
         throw new ServerError('Nenhuma análise com esse ID foi encontrada');

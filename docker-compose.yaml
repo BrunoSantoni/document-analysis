@@ -1,0 +1,22 @@
+version: "3"
+services:
+  postgres:
+    image: postgres
+    container_name: docker_postgres_teste
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: document_analysis
+    user: postgres
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:alpine
+    container_name: docker_redis_teste
+    command: redis-server
+    container_name: docker_redis_teste
+    restart: always
+    ports:
+      - "6379:6379"

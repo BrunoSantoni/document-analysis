@@ -11,7 +11,7 @@ import IAnalysesRepository from '../repositories/IAnalysesRepository';
 class CreateAnalysisService {
   constructor(
     @inject('AnalysesRepository')
-    private analysisRepository: IAnalysesRepository,
+    private analysesRepository: IAnalysesRepository,
 
     @inject('CacheProvider')
     private cacheProvider: ICacheProvider,
@@ -32,7 +32,7 @@ class CreateAnalysisService {
       throw new ServerError('O documento contém URLs inválidas');
     }
 
-    const { analysisId } = await this.analysisRepository.create({
+    const { analysisId } = await this.analysesRepository.create({
       fullName,
       cpf,
       documents,

@@ -9,7 +9,7 @@ import IDocument from '@modules/analyses/types/IDocument';
 
 import { Exclude } from 'class-transformer';
 
-@Entity('analysis')
+@Entity('analyses')
 class Analysis {
   @PrimaryGeneratedColumn('uuid', { name: 'analysis_id' })
   analysisId: string;
@@ -20,8 +20,8 @@ class Analysis {
   @Column()
   cpf: string;
 
-  @Column('timestamp with time zone')
-  analyzedAt: Date;
+  @Column('timestamp with time zone', { name: 'analysed_at' })
+  analysedAt: Date;
 
   @Column('jsonb')
   documents: IDocument[];

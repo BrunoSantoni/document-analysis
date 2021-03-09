@@ -1,26 +1,23 @@
-import { getRepository, Repository } from 'typeorm';
-import { v4 } from 'uuid';
-
-import IAnalysesRepository from '@modules/analyses/repositories/IAnalysesRepository';
 import ICreateAnalysisDto from '@modules/analyses/dtos/ICreateAnalysisDto';
 import IDocument from '@modules/analyses/types/IDocument';
-import Analysis from '../entities/Analysis';
+import { IDocumentStatus } from '@modules/analyses/types/IDocumentStatus';
+import { v4 } from 'uuid';
+import Analysis from '../../infra/typeorm/entities/Analysis';
+import IAnalysesRepository from '../IAnalysesRepository';
 
-type IDocumentStatus = 'valid' | 'fraud' | 'error';
-
-class AnalysisRepository implements IAnalysesRepository {
-  private ormRepository: Repository<Analysis>;
-
-  constructor() {
-    this.ormRepository = getRepository(Analysis);
-  }
+class FakeAnalysesRepository implements IAnalysesRepository {
+  private analyses: Analysis[] = [];
 
   public async findSpecificAnalysis(analysisId: string): Promise<Analysis> {
-    return this.ormRepository.findOne(analysisId);
+    const specificAnalysis = this.analyses.find(
+      analysis => analysis.analysisId === analysisId,
+    );
+
+    return specificAnalysis;
   }
 
   public async findAll(): Promise<Analysis[]> {
-    return this.ormRepository.find();
+    return this.analyses;
   }
 
   public async create({
@@ -28,7 +25,7 @@ class AnalysisRepository implements IAnalysesRepository {
     cpf,
     documents,
   }: ICreateAnalysisDto): Promise<Analysis> {
-    const analyzedAt = new Date();
+    const analysedAt = new Date();
 
     const documentPossibleStatus: IDocumentStatus[] = [
       'valid',
@@ -48,17 +45,18 @@ class AnalysisRepository implements IAnalysesRepository {
       };
     });
 
-    const analysis = this.ormRepository.create({
-      fullName,
-      cpf,
-      analyzedAt,
-      documents: formattedDocuments,
-    });
+    const analysis = new Analysis();
 
-    await this.ormRepository.save(analysis);
+    analysis.analysisId = v4();
+    analysis.fullName = fullName;
+    analysis.cpf = cpf;
+    analysis.analysedAt = analysedAt;
+    analysis.documents = formattedDocuments;
+
+    this.analyses.push(analysis);
 
     return analysis;
   }
 }
 
-export default AnalysisRepository;
+export default FakeAnalysesRepository;

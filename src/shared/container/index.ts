@@ -2,10 +2,10 @@ import { container } from 'tsyringe';
 
 import './providers';
 
-import AnalysisRepository from '@modules/analyses/infra/typeorm/repositories/AnalysisRepository';
+import AnalysesRepository from '@modules/analyses/infra/typeorm/repositories/AnalysesRepository';
 import IAnalysesRepository from '@modules/analyses/repositories/IAnalysesRepository';
 
 container.registerSingleton<IAnalysesRepository>(
   'AnalysesRepository',
-  AnalysisRepository,
+  AnalysesRepository,
 );
