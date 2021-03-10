@@ -21,28 +21,24 @@
 ### Também foram seguidos alguns principíos do SOLID, como 'Single Responsability Principle', 'Liskov Substitution Principle' e 'Dependency Inversion Principle'.
 
 # Instruções para instalação
-### 1 - Clone o repositório rodando o comando: `git clone https://github.com/BrunoSantoni/document-analysis.git`;
+1 - Clone o repositório rodando o comando: `git clone https://github.com/BrunoSantoni/document-analysis.git`;
 
-### 2 - Instale as dependências com o comando: `yarn`;
+2 - Instale as dependências com o comando: `yarn`;
 
-### 3.1 - Crie um arquivo __.env__ na raíz do projeto e copie o conteúdo de __.env.example__ para ele;
+3.1 - Crie um arquivo __.env__ na raíz do projeto e copie o conteúdo de __.env.example__ para ele;
 ### __PS: Caso alguma informação do seu contêiner do Redis seja diferente do exemplo, altere conforme necessário__
 
-### 3.2 - Crie um arquivo __ormconfig.json__ na raíz do projeto e copie o conteúdo de __ormconfig.example.json__ para ele;
+3.2 - Crie um arquivo __ormconfig.json__ na raíz do projeto e copie o conteúdo de __ormconfig.example.json__ para ele;
 ### __PS: Caso alguma informação do seu contêiner do Postgres seja diferente do exemplo, altere conforme necessário__
 
-### 4 - Inicie os seus contêineres no Docker, ou execute o comando `docker compose up` para criar os contêineres automaticamente;
-
-### 5 - Crie uma tabela no seu Postgres chamada `document_analysis`;
-
-### 6 - Execute o comando: `yarn typeorm migration:run` para rodar as migrations e criar as tabelas no banco.
+4 - Abra o Docker e inicie os seus contêineres, ou execute o comando `docker compose up` para criar os contêineres e a tabela automaticamente;
 
 # Comandos
 
-### `yarn test` = Roda os testes unitários que estão na pasta src/modules/analyses/services/&#95;&#95;tests&#95;&#95;
-### `yarn test:watch` = Roda os testes unitários e fica observando as mudanças para testar em tempo real
-### `yarn dev` = Roda o servidor na porta __3333__
-### `yarn build` = Gera uma build com o Babel na pasta *dist*
+#### `yarn test` = Roda os testes unitários que estão na pasta src/modules/analyses/services/&#95;&#95;tests&#95;&#95;
+#### `yarn test:watch` = Roda os testes unitários e fica observando as mudanças para testar em tempo real
+#### `yarn dev` = Roda o servidor na porta __3333__
+#### `yarn build` = Gera uma build com o Babel na pasta *dist*
 
 # Rotas
 
@@ -61,7 +57,7 @@
 `
 
 ### /analyses?page=__x__&limit=__x__ : Rota do tipo GET que recebe *query params* responsável por listar todas as análises no banco *ordenadas pelos nomes dos remetentes em ordem alfabética*.
-### __IMPORTANTE__: O __x__ no page e no limit correspondem ao número da página desejado e ao limite de análises retornadas por página. Por exemplo: /analyses?page=1&limit=5 fará retornar as cinco primeiras análises. /analyses?page=2&limit=10 retornará a análise 11 - 20 se houverem e assim por diante.
+### __IMPORTANTE__: O __x__ no page e no limit correspondem ao número da página desejado e ao limite de análises retornadas por página. Por exemplo: /analyses?page=1&limit=5 fará retornar as cinco primeiras análises. /analyses?page=2&limit=10 retornará as análises 11 - 20 se houverem e assim por diante.
 
 ### /analyses/__id-analise__ : Rota do tipo GET que recebe *route params* responsável por listar uma análise específica.
 ### __IMPORTANTE__: O __id-analise__ deve ser preenchido com um ID de uma análise já cadastrada previamente, os ID's das análises estão sempre no formato _UUID_.
