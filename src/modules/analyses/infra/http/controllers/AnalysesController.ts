@@ -8,8 +8,12 @@ import { classToClass } from 'class-transformer';
 
 class AnalysesController {
   public async index(req: Request, res: Response): Promise<Response> {
+    const page = Number(req.query.page) || 1;
+    const limit = Number(req.query.limit) || 10;
+    const step = (Number(page) - 1) * Number(limit);
+
     const listAnalyses = container.resolve(ListAnalysesService);
-    const analyses = await listAnalyses.run();
+    const analyses = await listAnalyses.run(page, limit, step);
 
     return res.json(classToClass(analyses));
   }

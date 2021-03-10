@@ -18,8 +18,16 @@ class AnalysesRepository implements IAnalysesRepository {
     return this.ormRepository.findOne(analysisId);
   }
 
-  public async findAll(): Promise<Analysis[]> {
-    return this.ormRepository.find();
+  public async findAll(limit: number, step: number): Promise<Analysis[]> {
+    const analyses = await this.ormRepository.find({
+      skip: step,
+      take: limit,
+      order: {
+        fullName: 'ASC',
+      },
+    });
+
+    return analyses;
   }
 
   public async create({

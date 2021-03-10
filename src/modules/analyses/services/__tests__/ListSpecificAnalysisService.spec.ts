@@ -1,8 +1,6 @@
-import Analysis from '@modules/analyses/infra/typeorm/entities/Analysis';
 import FakeAnalysesRepository from '@modules/analyses/repositories/fakes/FakeAnalysesRepository';
 import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 import ServerError from '@shared/errors/ServerError';
-import { classToClass } from 'class-transformer';
 import CreateAnalysisService from '../CreateAnalysisService';
 import ListSpecificAnalysisService from '../ListSpecificAnalysisService';
 

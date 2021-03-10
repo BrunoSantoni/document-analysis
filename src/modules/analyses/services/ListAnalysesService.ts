@@ -15,19 +15,26 @@ class ListAnalysesService {
     private cacheProvider: ICacheProvider,
   ) {}
 
-  public async run(): Promise<Analysis[]> {
+  public async run(
+    page: number,
+    limit: number,
+    step: number,
+  ): Promise<Analysis[]> {
     let allAnalyses = await this.cacheProvider.recover<Analysis[]>(
-      'list-analyses',
+      `list-analyses:${page}:${limit}`,
     );
 
     if (!allAnalyses) {
-      allAnalyses = await this.analysesRepository.findAll();
+      allAnalyses = await this.analysesRepository.findAll(limit, step);
 
       if (allAnalyses.length < 1) {
         throw new ServerError('Nenhuma análise encontrada');
       }
 
-      await this.cacheProvider.save('list-analyses', classToClass(allAnalyses));
+      await this.cacheProvider.save(
+        `list-analyses:${page}:${limit}`,
+        classToClass(allAnalyses),
+      );
     }
 
     return allAnalyses;
