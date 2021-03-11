@@ -2,14 +2,34 @@
 ### Esse projeto foi feito como teste da empresa LUPPA.
 <br/><br/>
 
+> # Sumário
+
+<p align="center">
+  <a href="#-tecnologias">Tecnologias</a>
+  &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-estrutura">Estrutura</a>
+  &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-Instruções-para-instalação">Como instalar e executar</a>
+  &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-comandos">Comandos</a>
+  &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-rotas">Rotas</a>
+</p>
+&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+
 > # Tecnologias
 As tecnologias utilizadas no projeto foram:
 - Node.js com Express para criar a API;
 
 - PostgreSQL como banco de dados;
+
 - Redis para armazenar o cache das requisições;
+
 - TypeORM para fazer toda a comunicação com o banco  de dados;
+
 - Docker para separar a aplicação por contêineres;
+
+- Yarn para gerenciar os pacotes instalados na aplicação.
 <br/><br/>
 
 > # Estrutura
@@ -35,7 +55,10 @@ O projeto segue o padrão _Data Mapper Pattern_ que tem como objetivo abstrair e
 ### __PS: Caso alguma informação do seu contêiner do Postgres seja diferente do exemplo, altere conforme necessário__
 
 4 - Abra o Docker e inicie os seus contêineres, ou execute o comando `docker compose up -d` para criar os contêineres e a tabela automaticamente;
+
+5 - No terminal, execute o comando `yarn typeorm migration:run` para rodar as migrations e criar as tabelas necessárias.
 <br/><br/><br/>
+
 > # Comandos
 
 #### `yarn test` = Roda os testes unitários que estão na pasta src/modules/analyses/services/&#95;&#95;tests&#95;&#95;
@@ -43,6 +66,7 @@ O projeto segue o padrão _Data Mapper Pattern_ que tem como objetivo abstrair e
 #### `yarn dev` = Roda o servidor na porta __3333__
 #### `yarn build` = Gera uma build com o Babel na pasta *dist*
 <br/><br/>
+
 > # Rotas
 
 ### _/analyses_ : Rota do tipo POST responsável por criar uma análise de documento, para cadastrar os documentos é preciso enviar a requisição no seguinte formato:
