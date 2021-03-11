@@ -28,7 +28,7 @@ class ListAnalysesService {
       allAnalyses = await this.analysesRepository.findAll(limit, step);
 
       if (allAnalyses.length < 1) {
-        throw new ServerError('Nenhuma análise encontrada');
+        throw new ServerError('Nenhuma análise encontrada', 404);
       }
 
       await this.cacheProvider.save(
