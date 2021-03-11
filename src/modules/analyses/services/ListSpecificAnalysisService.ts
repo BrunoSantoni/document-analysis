@@ -27,21 +27,20 @@ class ListSpecificAnalysisService {
       `list-analysis:${analysisId}`,
     );
 
-    if (!analysis) {
-      analysis = await this.analysesRepository.findSpecificAnalysis(analysisId);
-
-      if (!analysis) {
-        throw new ServerError(
-          'Nenhuma análise com esse ID foi encontrada',
-          404,
-        );
-      }
-
-      await this.cacheProvider.save(
-        `list-analysis:${analysisId}`,
-        classToClass(analysis),
-      );
+    if (analysis) {
+      return analysis;
     }
+
+    analysis = await this.analysesRepository.findSpecificAnalysis(analysisId);
+
+    if (!analysis) {
+      throw new ServerError('Nenhuma análise com esse ID foi encontrada', 404);
+    }
+
+    await this.cacheProvider.save(
+      `list-analysis:${analysisId}`,
+      classToClass(analysis),
+    );
 
     return analysis;
   }

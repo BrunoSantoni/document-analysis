@@ -38,7 +38,7 @@ class CreateAnalysisService {
       documents,
     });
 
-    await this.cacheProvider.invalidate('list-analyses');
+    await this.cacheProvider.invalidatePrefix('list-analyses');
 
     const responsePattern = {
       analysisId,

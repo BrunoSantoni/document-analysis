@@ -24,19 +24,20 @@ class ListAnalysesService {
       `list-analyses:${page}:${limit}`,
     );
 
-    if (!allAnalyses) {
-      allAnalyses = await this.analysesRepository.findAll(limit, step);
-
-      if (allAnalyses.length < 1) {
-        throw new ServerError('Nenhuma análise encontrada', 404);
-      }
-
-      await this.cacheProvider.save(
-        `list-analyses:${page}:${limit}`,
-        classToClass(allAnalyses),
-      );
+    if (allAnalyses) {
+      return allAnalyses;
     }
 
+    allAnalyses = await this.analysesRepository.findAll(limit, step);
+
+    if (allAnalyses.length < 1) {
+      throw new ServerError('Nenhuma análise encontrada', 404);
+    }
+
+    await this.cacheProvider.save(
+      `list-analyses:${page}:${limit}`,
+      classToClass(allAnalyses),
+    );
     return allAnalyses;
   }
 }
