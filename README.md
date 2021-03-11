@@ -5,15 +5,15 @@
 > # Sumário
 
 <p align="center">
-  <a href="#-tecnologias">Tecnologias</a>
+  <a href="#tecnologias">Tecnologias</a>
   &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-estrutura">Estrutura</a>
+  <a href="#estrutura">Estrutura</a>
   &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-Instruções-para-instalação">Como instalar e executar</a>
+  <a href="#instruções-para-instalação">Como instalar e executar</a>
   &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-comandos">Comandos</a>
+  <a href="#comandos">Comandos</a>
   &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-rotas">Rotas</a>
+  <a href="#rotas">Rotas</a>
 </p>
 &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 
